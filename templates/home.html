@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Water Quality Prediction</title>
+<style>
+body {
+  background-image: url("https://cdn.pixabay.com/photo/2018/09/03/23/56/sea-3652697_960_720.jpg"); 
+  background-repeat: no-repeat; 
+  background-size: cover;
+   
+}
+
+form {
+	width:20%;
+	margin: 10px auto 0;
+	padding: 20px;
+        text-align: center;
+	border-radius: 5px;
+         border:none;
+	
+}
+h1 {
+
+ padding: 10px;
+
+text-align: center;
+font-family: Georgia, serif;
+}
+ 
+.input-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+
+label {
+	display: block;
+	margin-bottom: 5px;
+	font-weight: bold;
+        
+}
+
+input[type="number"] {
+                 width: 100%;
+			padding: 10px;
+			border-radius: 5px;
+			border: 1px solid #ccc;
+			font-size: 16px;
+			margin-bottom: 10px;
+			box-sizing: border-box;
+		}
+
+		input[type="submit"] {
+			background-color: #4CAF50;
+			color: white;
+			padding: 12px 20px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			font-size: 16px;
+		}
+
+		input[type="submit"]:hover {
+			background-color: #3e8e41;
+		}
+.iframe-item {
+  display: inline-block;
+  vertical-align: top;
+  text-align: center;
+  width: 33%;
+}
+h2 {
+  margin: 0;
+  font-size: 24px;
+  font-family: Helvetica, sans-serif;
+}
+iframe {
+  height: 150px;
+  width: 250px;
+border: 1px solid skyblue;
+opacity: 0.8;
+background-color: transparent;
+}
+
+    
+
+
+</style>
+</head>
+<body>
+	<h1>Water Quality Monitoring System Using Machine Learning</h1>
+
+<div class="iframe-container">
+  <div class="iframe-item">
+    <h3>pH</h3>
+    <iframe src="https://thingspeak.com/channels/2080793/widgets/620327" ></iframe>
+  </div>
+  <div class="iframe-item">
+    <h3>TDS</h3>
+    <iframe src="https://thingspeak.com/channels/2080793/widgets/620329"  "></iframe>
+  </div>
+  <div class="iframe-item">
+    <h3>Turbidity</h3>
+    <iframe src="https://thingspeak.com/channels/2080793/widgets/620328"  ></iframe>
+  </div>
+</div>
+
+<h1>Enter the Water Parameters</h1>
+<form method="post" action="{{ url_for('predict') }}">
+		<label for="pH">pH:</label>
+		<input type="number" step="0.01" name="pH" id="pH" placeholder="Enter pH value" required><br>
+
+		<label for="TDS">TDS:</label>
+		<input type="number" step="0.1" name="TDS" id="TDS" placeholder="Enter TDS value" required><br>
+
+		<label for="turbidity">Turbidity:</label>
+		<input type="number" step="0.1" name="turbidity" id="turbidity" placeholder="Enter Turbidity value" required><br>
+
+		<input type="submit" value="Predict">
+	</form>
+</body>
+</html>
